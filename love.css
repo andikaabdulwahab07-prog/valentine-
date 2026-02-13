@@ -1,226 +1,132 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.icon-love {
-    width: 400px;
-}
+
 html, body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  font-family: arial, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef, #fad0c4);
+  overflow-x: hidden;
 }
 
-body {
-    /*background-color: skyblue;*/
-    overflow: hidden;   
+/* particles */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
+.particle {
+  position: absolute;
+  top: -60px;
+  width: 20px;
+  height: 20px;
+  background: url("heart.png") no-repeat center;
+  background-size: contain;
+  opacity: 0.8;
+  animation: floatParticles 12s linear infinite;
+}
+
+@keyframes floatParticles {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+}
+
+/* container utama */
 .container {
-    width: 100%;
-    height: 100%;
-    position: relative;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  gap: 20px;
 }
 
-/*---------------------- body_left -------------------------*/
+/* gambar & video */
 .body_left {
-    width: 300px;
-    height: 300px;
-    left: 0;
-    bottom: 110px;
-    position: absolute;
-    z-index: 98;
-
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-/*---------------------- body_left -------------------------*/
-
-/*---------------------- body_center -------------------------*/
-.container .love {
-    width: 520px; /* 13 * 40 */
-    height: 440px; /* 11 * 40 */
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    margin: -260px 0 0 -220px;
-    /*background-color: gray;*/
+.body_left img {
+  width: 100%;
+  max-width: 300px; /* ukuran video sebelumnya */
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+.body_left video {
+  width: 150px; /* diperkecil */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* love text */
+#love-text {
+  width: calc(100% - 40px);
+  max-width: 900px;
+  padding: 24px;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(22px, 5vw, 34px);
+  color: #c2185b;
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+/* hearts klik */
 .love .block {
-    right: 0;
-    position: absolute;
-    visibility: hidden;
-    background-color: yellow;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .love .block div {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    background: url("heart.png") no-repeat;
-    background-size: contain;
-    /*background-color: #c40908;*/
-    /*border: 1px solid silver;*/
-    box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  background: url("heart.png") no-repeat center;
+  background-size: contain;
+  animation: pulse 2s infinite;
+  cursor: pointer;
 }
 
-#love-text {
-    position: absolute;
-    left: 50%;
-    top: 70%;
-    transform: translateX(-50%);
-
-    font-family: "Times New Roman", Georgia, serif;
-    font-size: clamp(48px, 6vw, 72px);
-
-    color: #c2185b;
-
-    opacity: 0;
-    pointer-events: none;
-    z-index: 100;
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
-/* fade in first */
-#love-text.show {
-    animation: fadeInText 0.5s ease-in forwards,
-               blinkText 2.5s ease-in-out 0.8s infinite;
+/* music button */
+#music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  cursor: pointer;
+  z-index: 50;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-/* fade-in */
-@keyframes fadeInText {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* gentle blink (not full disappear) */
-@keyframes blinkText {
-    0%   { opacity: 1; }
-    50%  { opacity: 0.65; }
-    100% { opacity: 1; }
-}
-
-
-
-
-
-/*---------------------- body_center -------------------------*/
-
-/*---------------------- footer -------------------------*/
-@keyframes border {
-    0% {
-        width: 0;
-    }
-    5% {
-        width: 5%;
-    }
-    10% {
-        width: 10%;
-    }
-    15% {
-        width: 15%;
-    }
-    20% {
-        width: 20%;
-    }
-    25% {
-        width: 25%;
-    }
-    30% {
-        width: 30%;
-    }
-    35% {
-        width: 35%;
-    }
-    40% {
-        width: 40%;
-    }
-    45% {
-        width: 45%;
-    }
-    50% {
-        width: 50%;
-    }
-    55% {
-        width: 55%;
-    }
-    60% {
-        width: 60%;
-    }
-    65% {
-        width: 65%;
-    }
-    70% {
-        width: 70%;
-    }
-    75% {
-        width: 75%;
-    }
-    80% {
-        width: 80%;
-    }
-    85% {
-        width: 85%;
-    }
-    90% {
-        width: 90%;
-    }
-    95% {
-        width: 95%;
-    }
-    100% {
-        width: 100%;
-    }
-
-}
-.footer {
-    bottom: 30px;
-    position: relative;
-    z-index: 99;
-}
-.footer .border .border-top {
-    /*width: 0;*/
-    /*display: inline-block;*/
-    border-top: 3px solid black;
-    transform-origin: left center;
-    -webkit-animation: border 312 linear;
-    -o-animation: border 12s linear;
-    animation: border 12s linear;
-    animation-fill-mode : both;
-    /*border-bottom: none;*/
-}
-
-.footer .border .border-bottom {
-    /*width: 0;*/
-    /*display: inline-block;*/
-    float: right;
-    border-top: 3px solid red;
-    transform-origin: right center;
-    -webkit-animation: border 7s linear 12s;
-    -o-animation: border 7s linear 12s;
-    animation: border 7s linear 12s;
-    animation-fill-mode : both;
-    /*border-bottom: none;*/
-}
-
-.footer .copyright {
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    bottom: -30px;
-    text-align: center;
-    /*background-color: gray;*/
-
-}
-
-.copyright div {
-    width: 30%;
-    line-height: 30px;
-    display: inline-block;
-}
-
-.copyright div span {
-    color: dimgray;
-}
-
-/*---------------------- footer -------------------------*/
-
